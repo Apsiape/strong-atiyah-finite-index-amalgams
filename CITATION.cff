@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: |-
+  Preprint. Version 1.0.0. Text: CC BY 4.0.
+type: software
+title: "The strong Atiyah conjecture for finite-index amalgams"
+version: 1.0.0
+date-released: '2026-11-18'
+license: [CC-BY-4.0, MIT, Apache-2.0]
+authors: [{"family-names": "Mghirbi", "given-names": "Nidhal", "orcid": "https://orcid.org/0009-0005-6534-1118"}, {"family-names": "Douglas", "given-names": "Seth", "orcid": "https://orcid.org/0009-0007-4708-3252"}]
+keywords: ["strong Atiyah conjecture", "amalgamated free product", "von Neumann rank", "division ring", "universal field of fractions", "lattices in products of trees", "S-arithmetic groups"]
+abstract: "Let G = A *_E B, where E has finite index in both vertex groups. We prove that the torsion-free strong Atiyah conjecture over a subfield of ℂ passes from A and B to G. The division closure of the group algebra is the universal field of fractions of the coproduct of the vertex division rings over the edge division ring. The proof starts with an analytic formula for the rank of a product of vertex matrices, valid for arbitrary group amalgams. At finite index we show that a subspace over the edge division ring attains the minimum in that formula. Applications include torsion-free finite-index subgroups of SL₂ over rings of S-integers in ℚ and in imaginary quadratic fields, and the simple lattices in products of trees constructed by Burger and Mozes. For these lattices, the point eigenvalues of matrices over Q̄[G] in the regular representation are algebraic."

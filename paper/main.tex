@@ -1,0 +1,534 @@
+\pdfoutput=1
+\providecommand{\DoNotLoadEpstopdf}{}
+\documentclass[11pt,a4paper,reqno]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,mathtools,amssymb,microtype}
+\usepackage[textwidth=151mm,textheight=235mm,heightrounded]{geometry}
+\usepackage[unicode,pdfencoding=auto,hidelinks]{hyperref}
+\hypersetup{pdftitle={The strong Atiyah conjecture for finite-index amalgams},pdfauthor={Nidhal Mghirbi and Seth Douglas},pdfkeywords={strong Atiyah conjecture, amalgamated free product, von Neumann rank, division ring}}
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{mainthm}{Theorem}
+\renewcommand{\themainthm}{\Alph{mainthm}}
+\theoremstyle{remark}
+\newtheorem*{example}{Example}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathcal N}
+\newcommand{\U}{\mathcal U}
+\newcommand{\Mat}{\operatorname{Mat}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\kerp}{\operatorname{ker}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Tor}{\operatorname{Tor}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\coef}{\varepsilon}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\UU}{\mathscr U}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\field}[1]{D_{#1}}
+\setcounter{tocdepth}{1}
+\allowdisplaybreaks[1]
+\begin{document}
+\title[The strong Atiyah conjecture for finite-index amalgams]{The strong Atiyah conjecture for finite-index amalgams}
+\author{Nidhal Mghirbi}
+\author{Seth Douglas}
+\date{Version 1.0.0, November 2026}
+\begin{abstract}
+Let \(G=A*_E B\), where \(E\) has finite index in both vertex groups. We prove that the torsion-free strong Atiyah conjecture over a subfield of \(\C\) passes from \(A\) and \(B\) to \(G\). The division closure of the group algebra is the universal field of fractions of the coproduct of the vertex division rings over the edge division ring. The proof starts with an analytic formula for the rank of a product of vertex matrices, valid for arbitrary group amalgams. At finite index we show that a subspace over the edge division ring attains the minimum in that formula. Applications include torsion-free finite-index subgroups of \(\SL_2\) over rings of \(S\)-integers in \(\Q\) and in imaginary quadratic fields, and the simple lattices in products of trees constructed by Burger and Mozes. For these lattices, the point eigenvalues of matrices over \(\overline{\Q}[G]\) in the regular representation are algebraic.
+\end{abstract}
+\maketitle
+\begin{center}
+\small Claude Opus 5.5, GPT-6.1 Sol, GPT-6.2 Sol and GPT-6.2 Astra assisted with this work; the authors take responsibility for every claim.
+\end{center}
+\section{Introduction}
+A matrix over a complex group algebra acts by convolution on columns of square-summable functions. Its kernel has a von Neumann dimension, a nonnegative real number. The strong Atiyah conjecture for a torsion-free group asks that this number be an integer. We study what happens when two groups that satisfy the conjecture are glued along a common subgroup. Our hypothesis is that the common subgroup has finitely many cosets on each side. It may be infinite and nonnormal, and the two indices may differ.
+
+For a discrete group \(H\), let \(\N(H)\) be its group von Neumann algebra and \(\U(H)\) its ring of affiliated operators. For a field \(K\subseteq\C\), let \(D_K(H)\) denote the smallest subring of \(\U(H)\) containing \(K[H]\) and closed under inversion of elements invertible in \(\U(H)\). We use the unnormalized matrix rank \(\rk_H\), so an identity matrix of size \(n\) has rank \(n\). For torsion-free \(H\), integrality of the ranks of all \(K[H]\)-matrices is equivalent to \(D_K(H)\) being a division ring. This is the division-ring criterion of Linnell and Schick \cite[Lemma~3.4]{Schick}. The Schur-complement proof in Section~\ref{sec:universal} and Gaussian elimination give both implications for the present convention on \(K\), without using closure under complex conjugation.
+
+\begin{mainthm}\label{thm:A}
+Let \(G=A*_E B\) be a countable group amalgam and let \(K\subseteq\C\) be a field. Suppose that \([A:E]\) and \([B:E]\) are finite and that \(D_K(A)\) and \(D_K(B)\) are division rings. Every rectangular matrix over \(K[G]\) then has integral von Neumann rank. Moreover, \(D_K(G)\) is a division ring and is the universal field of fractions of the ring coproduct
+\[
+                    D_K(A)*_{D_K(E)}D_K(B).
+\]
+This identification extends the given embeddings of both vertex division rings.
+\end{mainthm}
+
+The division-ring hypotheses already force the vertex groups to be torsion-free. A nonidentity element \(g\) of finite order \(d\) would give the two nonzero factors \(1-g\) and \(1+g+\cdots+g^{d-1}\) with zero product. The tree action then implies that \(G\) is torsion-free as well.
+
+The closest group-theoretic result is due to S\'anchez-Peralta \cite[Theorem~1.1]{Sanchez}. He proves the strong Atiyah conjecture for countable fundamental groups of graphs of groups with \emph{finite edge groups}, assuming the conjecture at the vertices, a finite least common multiple of the orders of finite subgroups, and a conjugation-invariant coefficient field. Theorem~A treats a single edge. Its finite-index hypothesis gives access to infinite edge groups, including nonabelian free groups. The distinction matters for the infinite simple groups of Burger and Mozes \cite[Corollary~5.4 and Theorem~5.5]{BM}, which split over finite-index subgroups of free groups and have no nontrivial finite quotients. These groups lie in S\'anchez-Peralta's class \(\mathcal T\) \cite[Definition~1.5]{Sanchez} but outside the subclass \(\mathcal T_{\mathrm{VLI}}\) covered by \cite[Theorem~1.6]{Sanchez}; for them, the strong Atiyah part of his Conjecture~7.2 is established here.
+
+Fisher and S\'anchez-Peralta \cite[Corollary~3.12]{FSP} constructed an abstract division-ring embedding of the group algebra for graphs of torsion-free groups satisfying the vertex conjecture, with arbitrary edge groups. Theorem~A identifies the field inside the affiliated operators of the specified amalgam. Fisher and S\'anchez-Peralta also identify the universal field of the graph of division rings with the Hughes-free field when the whole group is locally indicable and that field exists \cite[Lemma~7.6]{FSP}. Our vertex hypotheses allow the whole group to be finitely generated and simple. The resulting identification determines the matrix ranks in the regular representation.
+
+The analytic formula below also follows from the operator-valued atom theorem of Belinschi, Bercovici and Liu \cite{BBL} by a spectral cutoff. Section~\ref{sec:analytic} gives both this deduction and a proof using only group normal forms, projections and a two-by-two rotation. Write \(M_{a,m}(R)\) for the \(a\)-by-\(m\) matrices over a ring \(R\).
+\begin{mainthm}\label{thm:B}
+Let \(G=A*_E B\) be a countable group amalgam. Given \(X\in M_{a,m}(\U(A))\) and \(Y\in M_{m,b}(\U(B))\), one has
+\begin{equation}\label{eq:analytic}
+ \rk_G(XY)=
+ \min_{\substack{w=w^*=w^2\\ w\in M_m(\N(E))}}
+     \bigl(\rk_A(Xw)+\rk_B((1-w)Y)\bigr).
+\end{equation}
+There is a least minimizing projection, in the usual order on projections.
+\end{mainthm}
+
+Every expression on the right bounds the rank from above. Indeed, write \(XY=XwY+X(1-w)Y\). The difficulty is to find a single edge space on which the two bounds add to the exact rank. Under the hypotheses of Theorem~A, when \(X,Y\) have entries in the vertex division rings, a minimizer can be chosen to have range spanned by vectors over \(D_K(E)\). This last assertion, proved in Theorem~\ref{thm:rational}, makes the right side an ordinary sum of ranks over division rings.
+
+\smallskip
+\noindent\textit{The proof in four steps.}
+We rotate two copies of one vertex against two copies of the other, keeping the rank constant, and deduce that the linear term sends the old kernel into the old image. Applying this inclusion to intersections from many copies produces an edge projection attaining \eqref{eq:analytic}. At finite index we recover the trace of a vertex projection by integrating the dimensions of subspaces over the vertex division ring, chosen to maximize an overlap minus a dimension penalty. Taking the identity-coset coefficient gives a map between the maximizing spaces on the two sides, and equality in the resulting dimension bound supplies the desired subspace over \(D_K(E)\).
+
+The same rank formula identifies the universal field in Theorem~A and gives a case of S\'anchez-Peralta's homological conjecture (Corollary~\ref{cor:tor}). Section~\ref{sec:applications} gives arithmetic and simple-group applications. Section~\ref{sec:coeff} explains which information about eigenvalues passes from the vertices to the amalgam.
+
+\section{Ranks and subspaces over affiliated operators}\label{sec:modules}
+We specify the few facts about affiliated operators needed below. References for the construction and dimension theory are Berberian \cite{Berberian}, Reich \cite{Reich}, and L\"uck \cite[Chapters~6 and~8]{Luck}. For \(\N(H)\) take the left regular representation, with trace \(\tau_H(x)=\langle x\delta_1,\delta_1\rangle\). Its affiliated operators form the classical ring of quotients of \(\N(H)\) by its non-zero-divisors. On matrices the trace is \(\Tr_H(p)=\sum_i\tau_H(p_{ii})\).
+
+Write \(U=\U(H)\). An affiliated \(a\)-by-\(b\) matrix maps the right module \(U^b\) into \(U^a\) by left multiplication. If \(T\) is such a matrix, its polar decomposition and inversion of its absolute value on its support give an affiliated partial inverse \(T^\dagger\). Thus
+\[
+  \im T=(TT^\dagger)U^a,\qquad
+  \ker T=(1-T^\dagger T)U^b .
+\]
+Both generating matrices here are orthogonal projections. We set
+\(\dim_H(pU^a)=\Tr_H(p)\) and \(\rk_H T=\dim_H\im T\). The source and target supports have the same trace by polar decomposition. For a bounded matrix this gives the von Neumann dimensions of its Hilbert-space kernel and closed range. An affiliated square matrix of full rank is invertible.
+
+Finite sums, intersections and quotients of these submodules are finitely generated projective modules. Dimension is additive in exact sequences of such modules and detects the zero module. For example, \(\im(p\ \ q)=(p\vee q)U^a=pU^a+qU^a\). An infinite join below always means the module of the supremum of the projections. A subgroup inclusion preserves the normalized trace on scalar operators and carries all these finite matrix supports to the corresponding supports in the larger algebra. One can see this by decomposing the restriction of the regular representation into copies of the subgroup regular representation and then using spectral calculus. We will therefore compute dimensions over a vertex or in the ambient group as convenient. For restriction of scalars we will need the index factor in Lemma~\ref{lem:cosets}.
+
+\begin{example}
+If \(E=\{1\}\) and \(m=1\), the only edge projections are \(0\) and \(1\). Formula~\eqref{eq:analytic} reads \(\rk_G(XY)=\min(\rk_A X,\rk_B Y)\). For instance, take \(G=\langle s,t\mid s^2=t^2=1\rangle\), \(X=(1+s)/2\), and \(Y=(1+t)/2\). A vector in \(\ker X\cap\im Y\) satisfies \(s\xi=-\xi\) and \(t\xi=\xi\). Then \(st\xi=-\xi\), and square summability forces \(\xi=0\) along each orbit of the infinite-order element \(st\). Thus the full half-dimensional range of \(Y\) contributes to the rank of \(XY\). In size two, even for scalar matrices, a line may be needed. For \(X=(1,1)\) and \(Y=(1,-1)^{\mathsf T}\), the line \(\im Y\) makes both costs zero, whereas \(w=0,1\) each give cost one.
+\end{example}
+
+\section{An exact rank formula at the edge}\label{sec:analytic}
+The construction will take place in a larger group \(\widehat G\). Amalgamate countably many labelled copies \(A_i\) of \(A\) and \(B_j\) of \(B\), all along the same \(E\). The normal form theorem identifies each \(A_i*_E B_j\) with \(G\). An element or matrix from a vertex will carry a subscript for its copy. Throughout this section, an image or a kernel without mention of its ring is taken on columns over \(\U(\widehat G)\).
+
+\begin{lemma}[A constant-rank pencil]\label{lem:tangent}
+Let \(Z_0,Z_1\) be bounded matrices over a finite tracial von Neumann algebra. If \(\rk(Z_0+tZ_1)=\rk Z_0\) for real \(t\ne0\) arbitrarily close to zero, then \(Z_1(\ker Z_0)\subseteq\im Z_0\) over the affiliated ring.
+\end{lemma}
+\begin{proof}
+Let \(p\) be the range projection of \(Z_0\) and put \(q=1-p\). For every indicated \(t\), left multiplication by the invertible \(p+t^{-1}q\) preserves rank. It gives
+\[
+ (p+t^{-1}q)(Z_0+tZ_1)=Z_0+qZ_1+t p Z_1 .
+\]
+Rank is lower semicontinuous in operator norm. Indeed, if \(J_k\to J\) and \(\|J_k-J\|<\eta\), the source projection \(e=1_{[\eta,\infty)}(|J|)\) has zero intersection with the kernel projection \(k\) of \(J_k\). By Kaplansky's formula \(e\vee k-k\sim e-e\wedge k\), its trace is therefore at most \(\Tr(1-k)=\rk J_k\). Letting \(\eta\) decrease to zero gives the assertion.
+
+It follows that \(\rk(Z_0+qZ_1)\le\rk Z_0\). Projection by \(p\) maps \(\im(Z_0+qZ_1)\) onto \(\im Z_0\). Its kernel consists precisely of the vectors \(qZ_1 x\) with \(Z_0x=0\). Additivity of dimension gives
+\[
+ \rk(Z_0+qZ_1)=\rk Z_0+\dim\bigl(qZ_1\ker Z_0\bigr).
+\]
+The last module is the image of a finite matrix, so zero dimension forces it to vanish.
+\end{proof}
+
+\begin{lemma}[Rotating the vertex copies]\label{lem:rotate}
+Let \(a\in M_m(\N(A))\) and \(b\in M_m(\N(B))\). Set \(R_{ij}=a_i+b_j\). For \(i\ne k\) and \(j\ne l\),
+\begin{equation}\label{eq:cross}
+                  R_{ij}(\ker R_{kj})\ \subseteq\ \im R_{il}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Use two copies of each vertex. For a scalar \(2\)-by-\(2\) unitary \(V\) represent \(G\) by
+\[
+ x\in A\longmapsto \mathrm{diag}(x_1,x_2),\qquad
+ y\in B\longmapsto V\,\mathrm{diag}(y_1,y_2)V^* .
+\]
+These assignments agree on \(E\), where the diagonal blocks coincide. The normalized matrix trace agrees with the group trace on this representation. To check it, take a reduced alternating word of positive syllable length, with every syllable outside \(E\). Each term in a diagonal entry is a scalar multiple of a reduced word in the labelled copies, still alternating between types \(A\) and \(B\). It has trace zero by normal form. A nonidentity word in \(E\) gives trace zero on both diagonal blocks. By the trace GNS construction the resulting map extends normally and faithfully to \(\N(G)\) because the trace completion of the image group algebra is the \(L^2\)-space of the von Neumann algebra it generates. Thus it preserves normalized ranks, including after matrix amplification.
+
+For real \(t\), take \(V=(1+t^2)^{-1/2}\left(\begin{smallmatrix}1&t\\-t&1\end{smallmatrix}\right)\). Multiply the represented \(a+b\) on the right by \(V\) (amplified by \(I_m\)), and remove the nonzero scalar factor. The resulting pencil is
+\[
+     Z(t)=\begin{pmatrix}R_{11}&t R_{12}\\-t R_{21}&R_{22}\end{pmatrix}.
+\]
+Its unnormalized rank is \(2\rk_G(a+b)\) for all \(t\). Apply Lemma~\ref{lem:tangent} to a vector \((0,x)\) with \(R_{22}x=0\). Its image under the linear term is \((R_{12}x,0)\), so \(R_{12}x\in\im R_{11}\). Relabelling the two copies on each side gives \eqref{eq:cross}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~B]
+Let \(H_{ij}=\ker X_i\cap\im Y_j\) and put \(h=\dim H_{ij}\). Restriction of \(X_i\) to \(\im Y_j\), together with the subgroup embedding, gives
+\begin{equation}\label{eq:h}
+                h=\rk_B Y-\rk_G(XY)
+\end{equation}
+for every pair. Take the projection joins
+\[
+             L_i=\bigvee_j H_{ij},\qquad M_j=\bigvee_i H_{ij}.
+\]
+The projection onto \(L_i\) belongs to \(M_m(\N(A_i))\). In fact it belongs first to \(M_m(\N(\widehat G_i))\), where \(\widehat G_i\le\widehat G\) is the subgroup generated by \(A_i\) and all the \(B_j\), and it is fixed by the automorphisms of \(\widehat G_i\) induced by finite permutations of the labels \(j\). Every group element of this subgroup outside \(A_i\) has an infinite orbit under these permutations. This follows from the uniqueness of the sequence of vertex labels in reduced normal form. The Fourier coefficients of each bounded invariant matrix entry are square-summable and constant on each orbit, hence vanish on the infinite orbits. An element of a group von Neumann algebra whose Fourier coefficients are supported on a subgroup belongs to the subgroup von Neumann algebra (apply its trace-preserving conditional expectation). Interchanging the vertices gives the analogous assertion for \(M_j\). Denote the two projections by \(p_i,q_j\). Permuting the \(A_i\) as well shows that the \(p_i\) are copies of a single vertex projection, and likewise for the \(q_j\). Moreover,
+\[
+       L_i\subseteq\ker X_i,\qquad M_j\subseteq\im Y_j,\qquad
+       L_i\cap M_j=H_{ij}.
+\]
+
+Fix \(i,l\). We claim that \(L_i+M_l\) contains \emph{all} the \(H_{kj}\), including pairs for which \(k\ne i\) and \(j\ne l\). For such a pair choose \(z\in H_{kj}\). Both \(p_k\) and \(q_j\) fix \(z\), so \(z\in\ker(p_k-q_j)\). Apply \eqref{eq:cross} to the bounded vertex matrices \(p,-q\) to get
+\[
+      p_i z-z=(p_i-q_j)z\ \in\ \im(p_i-q_l)\ \subseteq\ L_i+M_l .
+\]
+Since \(p_i z\in L_i\), this proves the claim. For the pairs with \(k=i\) or \(j=l\), it follows immediately from the definitions. Thus the finite sum \(L_i+M_l\) equals the projection join of \emph{every} \(H_{kj}\). Its projection \(w\) is invariant under both families of permutations and hence belongs, by the same Fourier argument, to \(M_m(\N(E))\). Write \(W=\im w\).
+
+Use the decomposition \(W=L_i+M_j\) for the very pair at which the costs are to be computed. If \(u+v\in\im Y_j\) with \(u\in L_i\) and \(v\in M_j\), then \(u\in\ker X_i\cap\im Y_j=H_{ij}\subseteq M_j\). Hence \(W\cap\im Y_j=M_j\). Also \(X_iW=X_iM_j\), with kernel \(H_{ij}\) on \(M_j\). Consequently the two costs are
+\[
+    \rk_A(Xw)=\dim M_j-h,\qquad
+    \rk_B((1-w)Y)=\rk_B Y-\dim M_j .
+\]
+They add to \(\rk_G(XY)\) by \eqref{eq:h}. The decomposition in the introduction shows that every competing cost is at least this large.
+
+For leastness, let \(W'\) be the range of any minimizing edge projection. With \(K_i=\ker X_i\) and \(I_j=\im Y_j\), equality of the costs reads
+\[
+ h=\dim(W'\cap K_i)+\dim(W'\cap I_j)-\dim W'
+   \ \le\ \dim(W'\cap K_i\cap I_j)\ \le\ h .
+\]
+The first inequality is the dimension formula inside \(W'\). Faithfulness gives \(H_{ij}\subseteq W'\) for each pair, hence \(W\subseteq W'\).
+\end{proof}
+
+\subsection*{Another proof from the operator-valued atom theorem}
+We record precisely how \eqref{eq:analytic} follows from Belinschi, Bercovici and Liu \cite[Theorem~3.5 in the arXiv version]{BBL}. Let \(p\) be the kernel projection of \(X\) and \(q\) the range projection of \(Y\) in the common matrix algebra. The two projections are free over \(\mathcal B=M_m(\N(E))\) with respect to the trace-preserving conditional expectation \(\mathbb E\). Indeed an alternating product of edge-centered group-ring elements has zero edge expectation by normal form. Bounded strong approximation and centering by the conditional expectation give the same conclusion for vertex von Neumann algebras, and matrix multiplication gives the matricial assertion. Write \(h=p\wedge q\) (in this subsection \(h\) is a projection; its trace is the number \(h\) of \eqref{eq:h}) and \(e=\supp\mathbb E(h)\). Faithfulness applied to \((1-e)h(1-e)\) gives \(h\le e\), and every edge projection containing \(h\) contains \(e\).
+
+We will show, with the common matrix trace, that
+\begin{equation}\label{eq:atoms}
+             \Tr h=\Tr(p\wedge e)+\Tr(q\wedge e)-\Tr e .
+\end{equation}
+This is exactly equality of the rank costs for \(e\), as one sees by restricting \(X\) to \(e\) and \(1-e\) to \(\im Y\). We can suppose \(h\ne0\). Work in the corner of \(e\), with normalized trace for applying the atom theorem. The projections \(p'=p\wedge e\) and \(q'=q\wedge e\) belong to the two compressed vertex algebras, which remain free over \(e\mathcal Be\). Indeed the expectation of a corner element in the original algebra already belongs to \(e\mathcal Be\). Their meet is \(h\).
+
+If \(\mathbb E(h)\) is invertible in this corner, the atom theorem applies to \(p',q'\) at \(2e\), since positivity of \(e-p'\) and \(e-q'\) identifies the kernel of \(2e-p'-q'\) with \(h\). The theorem supplies \(b_1+b_2=2e\) in \(e\mathcal Be\), with \(h\) contained in \(\ker(b_1-p')\) and \(\ker(b_2-q')\). Thus \(b_i h=h\). Taking the conditional expectation gives \(b_i=e\) for both \(i\). The trace identity in part (vii) of the theorem now gives \eqref{eq:atoms} after undoing the trace normalization.
+
+For a general \(\mathbb E(h)\), put \(d_n=1_{[0,1/n)}(\mathbb E(h))\) \emph{in the corner} \(e\mathcal Be\). Its trace tends to zero because \(\mathbb E(h)\) has support \(e\). Enlarge the projections to \(p_n=p'\vee d_n,\ q_n=q'\vee d_n\), each still in its own vertex algebra. Their meet \(h_n\) contains both \(h\) and \(d_n\), so
+\[
+     \mathbb E(h_n)\ \ge\ \tfrac12\bigl(\mathbb E(h)+d_n\bigr)
+                         \ \ge\ (2n)^{-1}e .
+\]
+We may apply the invertible case to \(p_n,q_n\). Each enlargement costs at most \(\Tr d_n\). Hence
+\[
+ \Tr h\le\Tr h_n=\Tr p_n+\Tr q_n-\Tr e
+                 \le\Tr p'+\Tr q'-\Tr e+2\Tr d_n .
+\]
+The reverse inequality \(\Tr h\ge\Tr p'+\Tr q'-\Tr e\) follows from \(p'\vee q'\le e\). Taking the limit proves \eqref{eq:atoms}. Since the dimension argument at the end of the first proof shows that every minimizer contains \(h\), and every edge projection containing \(h\) contains \(e\), the projection \(e\) is also the least minimizer. This proof also applies to two tracial von Neumann algebras free over a common von Neumann subalgebra with trace-preserving expectations. Finite index first enters in the passage from an analytic edge projection to a subspace over the edge division ring.
+
+\section{Finite-index coordinates and a trace identity}\label{sec:finite}
+We now assume the hypotheses of Theorem~A. In this section \(V\) denotes either vertex, \(U_V=\U(V)\), \(U_E=\U(E)\), \(D_V=D_K(V)\) and \(F=D_K(E)\). We shall use both left and right cosets. The distinction is important because \(E\) need not be normal.
+
+\begin{lemma}[Coset coordinates]\label{lem:cosets}
+Let \(E\le V\) have index \(d<\infty\) and let \(D_V\) be a division ring. Then \(F\) is a division ring. For representatives \(r\) of \(V/E\), multiplication gives
+\[
+ D_V=\bigoplus_r rF,\qquad U_V=\bigoplus_r rU_E,\qquad
+                D_V\otimes_F U_E\xrightarrow{\ \simeq\ }U_V
+\]
+as right modules where appropriate. There are left module decompositions using representatives of \(E\backslash V\). Keeping the identity-coset component defines a \(U_E\)-bimodule map \(\coef_V:U_V\to U_E\) that takes \(D_V\) to \(F\). Finally,
+\[
+       \dim_E P=d\,\dim_V P
+\]
+when a finitely generated projective right \(U_V\)-module \(P\) is restricted to \(U_E\).
+\end{lemma}
+\begin{proof}
+First, for any subgroup \(J\le V\), \(D_K(J)\) embeds in \(D_V\). Indeed \(D_V\cap\U(J)\) contains \(K[J]\) and is closed under inversion of affiliated units in \(\U(J)\). Every nonzero element of \(D_K(J)\) is a unit in \(D_V\). Its kernel and cokernel supports computed in \(\U(J)\) have the same trace as in \(U_V\), so it is a unit already in \(\U(J)\). Its inverse therefore belongs to \(D_K(J)\).
+
+Use the normal core \(N=\bigcap_{v\in V}vEv^{-1}\). The sum of the \(r\U(N)\) for \(r\in V/N\) is direct. For a vanishing finite sum \(\sum r u_r\), choose a common right non-zero-divisor \(s\in\N(N)\) with all \(u_rs\) bounded. This uses the classical quotient description of \(\U(N)\). The vectors \(r u_rs\delta_1\) have disjoint coset supports, hence all vanish. The sum is a subring by normality. It contains \(\N(V)\) because taking the bounded conditional expectation of \(r^{-1}x\) onto \(\N(N)\) gives the coefficient of \(rN\) for every \(x\in\N(V)\). A non-zero-divisor \(x\in\N(V)\) acts injectively by left multiplication on the finite free right \(\U(N)\)-module given by the coset sum. In coordinates this is a square affiliated matrix, so injectivity implies invertibility. In particular \(xy=1\) for some \(y\) in the sum. Thus the sum contains \(x^{-1}\), and it is all of \(U_V\).
+
+The sum of \(rD_K(N)\) for \(r\in V/N\) is also a subring. Since it lies in the division ring \(D_V\), multiplication on the left by a nonzero member is an injective endomorphism of a finite-dimensional right vector space over \(D_K(N)\). It is therefore surjective. This subring is a division ring containing \(K[V]\), so it equals \(D_V\). Applying both decompositions inside \(E\) and regrouping the \(N\)-cosets gives the assertions for \(E\). Normality of \(N\) also supplies the left coordinates. In the \(V/N\) decomposition, retaining exactly the grades in \(E/N\) commutes with left and right multiplication by every homogeneous term from \(U_E\). This proves the bimodule assertion.
+
+For the dimension formula take \(P=pU_V^n\). In the right \(U_E\)-module coordinates indexed by \(rE\), left multiplication by \(p\) has \((r,s)\)-block \(\mathbb E_E(r^{-1}ps)\), where \(\mathbb E_E\) is the bounded conditional expectation onto \(\N(E)\), taken entrywise. Since \(\mathbb E_E(r^{-1}ps)^*=\mathbb E_E(s^{-1}pr)\) and the block matrix represents the idempotent \(p\), it is a projection in \(M_{dn}(\N(E))\) with image \(P\). Its \(r\)-diagonal block has matrix trace \(\Tr_V(r^{-1}pr)=\Tr_V(p)\). Summing over the \(d\) cosets proves the formula.
+\end{proof}
+
+For a right \(F\)-subspace \(L\subseteq D_V^n\), write \(L_U=LU_E\subseteq U_V^n\). The tensor isomorphism in Lemma~\ref{lem:cosets} identifies \(L_U\) with \(L\otimes_F U_E\). Exact sequences of \(F\)-spaces split, so this extension respects intersections, kernels, and preimages under \(F\)-linear maps. In particular \(\dim_E L_U=\dim_F L\).
+
+Let \(s\in M_n(\N(V))\) be a projection and \(S=sU_V^n\). The overlap of \(L\) with the given projection is measured by
+\[
+                  d_S(L)=\dim_E(L_U\cap S).
+\]
+A thin rational subspace can have almost all its affiliated span inside \(S\), whereas a larger one can have a greater absolute overlap. To compare them, subtract a multiple \(t\) of the rational dimension.
+
+\begin{lemma}[Trace from maximizing subspaces]\label{lem:threshold}
+For each \(0\le t\le1\) there is a greatest right \(F\)-subspace \(L_t\subseteq D_V^n\) maximizing
+\begin{equation}\label{eq:score}
+                  h_t(L)=d_S(L)-t\dim_F L .
+\end{equation}
+It is a right \(D_V\)-space, and
+\begin{equation}\label{eq:trace}
+              \int_0^1\dim_{D_V}L_t\,dt=\Tr_V(s).
+\end{equation}
+\end{lemma}
+\begin{proof}
+We first produce the greatest maximizer among the \(F\)-spaces. For two such spaces \(L,L'\), the sum of their overlaps is contained in \((L+L')_U\cap S\), and the intersection of the overlaps equals \((L\cap L')_U\cap S\). Subtracting the dimension penalty, which is additive in the dimension formula, gives
+\begin{equation}\label{eq:super}
+     h_t(L+L')+h_t(L\cap L')\ \ge\ h_t(L)+h_t(L').
+\end{equation}
+Let \(\sigma=\sup_L h_t(L)\). All dimensions lie between \(0\) and \(dn\). For each \(j\) put \(\sigma_j=\sup\{h_t(L):\dim_F L=j\}\), and let \(k\) be the largest \(j\) with \(\sigma_j=\sigma\). If \(k=dn\), the unique space of this dimension already attains it. Otherwise choose \(\eta>0\) so all spaces of dimension \(>k\) have score at most \(\sigma-\eta\). If two distinct \(k\)-dimensional spaces each had score \(>\sigma-\eta/3\), their sum would have dimension \(>k\). By \eqref{eq:super} and \(h_t(L\cap L')\le\sigma\), its score would exceed \(2(\sigma-\eta/3)-\sigma=\sigma-2\eta/3\). Thus all sufficiently good approximants of dimension \(k\) are the same space, which attains the supremum. The sum of any two maximizers maximizes, again by \eqref{eq:super}. A maximizer of largest dimension therefore contains them all.
+
+We next explain why the greatest maximizer is invariant under the whole vertex division ring. Use the same construction with \(N=\operatorname{core}_V E\) and \(D_K(N)\) in place of \(E,F\). Right multiplication by \(v\in V\) on columns is semilinear for the automorphism \(u\mapsto v^{-1}u v\) of both \(D_K(N)\) and \(\U(N)\). It preserves \(S\), and the twist preserves \(\dim_N\) because conjugation preserves the group trace. Consequently it preserves the score and fixes its greatest maximizer \(L^N_t\). Now \(D_V=\sum_{v\in V}vD_K(N)\), so \(L^N_t\) is a right \(D_V\)-space. For any right \(F\)-space \(L\) one has \(L\U(N)=LU_E\), because \(U_E=F\U(N)\). On these spaces both terms of the \(N\)-score are exactly \([E:N]\) times the terms in \eqref{eq:score}. The greatest \(N\)-maximizer itself is an \(F\)-space. It follows that it equals the greatest \(F\)-maximizer.
+
+Finally put \(H(t)=\max_L h_t(L)\). For each possible dimension \(k\) take the supremum of \(d_S(L)\) at that dimension. This expresses \(H\) as the maximum of finitely many affine functions. Off their breakpoints its derivative is \(-\dim_F L_t\). At the endpoints \(H(0)=\dim_E S=d\Tr_V(s)\) and \(H(1)=0\), since \(d_S(L)\le\dim_F L\). Integration gives \(\int_0^1\dim_F L_t\,dt=d\Tr_V(s)\). By the invariance just proved \(\dim_F L_t=d\dim_{D_V}L_t\), as required.
+\end{proof}
+
+\begin{example}
+Take \(E=V=\Z\), \(K=\C\) and \(n=1\). Fourier transform identifies \(\N(\Z)\) with the bounded functions on the circle and \(D_\C(\Z)\) with \(\C(z)\). For the projection onto a measurable arc of normalized length \(\alpha\), the only rational subspaces are \(0\) and \(\C(z)\). Their scores are \(0\) and \(\alpha-t\). Thus \(L_t=\C(z)\) for \(t\le\alpha\) and \(L_t=0\) for \(t>\alpha\). Formula~\eqref{eq:trace} gives \(\alpha\), which can be any number in \([0,1]\). Integrality in the next section will come from comparing two such integrals at the same parameter.
+\end{example}
+
+\section{Attaining the minimum over the edge division ring}\label{sec:rational}
+Continue to write \(F=D_K(E)\) and \(D_V=D_K(V)\). If \(L\subseteq F^m\) is a right \(F\)-subspace, let \(LD_V\subseteq D_V^m\) denote its right span and \(\pi_{L,V}:D_V^m\to D_V^m/LD_V\) the quotient. These spaces express the two costs without an involution on \(F\).
+
+\begin{theorem}[Rational attainment]\label{thm:rational}
+Under the hypotheses of Theorem~A, let \(X\in M_{a,m}(D_A)\) and \(Y\in M_{m,b}(D_B)\). Then
+\begin{equation}\label{eq:rational}
+ \rk_G(XY)=\min_{L\le F^m}
+ \left\{\dim_{D_A}X(LD_A)+\dim_{D_B}\im(\pi_{L,B}Y)\right\}.
+\end{equation}
+Here \(L\) ranges over right \(F\)-subspaces. In particular the rank is an integer.
+\end{theorem}
+
+For every \(L\), let \(w_L\in M_m(\N(E))\) be the projection with range \(LU_E\). Then \(\im(Xw_L)=X(LD_A)\,U_A\). Also \((1-w_L)Y\) and \(\pi_{L,B}Y\) have the same kernel, because \(\ker(1-w_L)=LU_B\). Complete a basis of \(L\) to a basis of \(F^m\), complete vertex bases to invertible vertex matrices, and use Lemma~\ref{lem:cosets}. The two costs of \(w_L\) in \eqref{eq:analytic} are then the two ranks in \eqref{eq:rational}. In particular every rational cost bounds \(\rk_G(XY)\) from above, and the issue is attainment. Starting with an analytic minimizer, we shall read off a possibly different minimizing space defined over \(F\).
+
+\begin{proof}
+Choose a minimizer \(w\) in \eqref{eq:analytic}. Define two right modules, now over different vertices,
+\[
+ S=\ker\big((1-w)Y:U_B^b\to U_B^m\big),\qquad
+ T=\im\big(Xw:U_A^m\to U_A^a\big).
+\]
+Their projections lie in their respective vertex von Neumann algebras. By \eqref{eq:analytic} their dimensions satisfy
+\begin{equation}\label{eq:defect}
+          \dim_B S-\dim_A T=b-\rk_G(XY)=:\delta .
+\end{equation}
+We compare \(S\) and \(T\) after restriction to the edge. Define the right \(F\)-linear map
+\[
+ c:D_B^b\longrightarrow D_A^a,\qquad c(x)=X\coef_B(Yx),
+\]
+where the identity-coset coefficient is taken entrywise. By Lemma~\ref{lem:cosets} its extension to \(U_E\) is the map \(c_U:U_B^b\to U_A^a\) given by the same formula. If \(x\in S\), then \(Yx=wYx\). Since the entries of \(w\) belong to \(U_E\), bimodularity gives \(\coef_B(Yx)=w\coef_B(Yx)\). Therefore
+\begin{equation}\label{eq:preserve}
+                          c_U(S)\subseteq T .
+\end{equation}
+
+Apply Lemma~\ref{lem:threshold} with \(S\) at \(B\) and \(T\) at \(A\). Denote their greatest maximizing spaces at \(t\) by \(Q_t\subseteq D_B^b\) and \(P_t\subseteq D_A^a\). We claim \(c(Q_t)\subseteq P_t\) for \emph{each} \(t\). Set
+\[
+ Q_t^{0}=Q_t\cap c^{-1}(P_t),\qquad P_t^{+}=P_t+c(Q_t),\qquad
+ k=\dim_F(Q_t/Q_t^{0})=\dim_F(P_t^{+}/P_t).
+\]
+Suppose \(k>0\). At \(B\), maximality of the score of \(Q_t\) gives the first inequality below. At \(A\), \(P_t^{+}\) properly contains the \emph{greatest} maximizer, so its score is strictly smaller. Together these comparisons give
+\begin{equation}\label{eq:gain}
+          d_S(Q_t)-d_S(Q_t^{0})\ \ge\ tk\ >\ d_T(P_t^{+})-d_T(P_t).
+\end{equation}
+But \eqref{eq:preserve} induces an injective map
+\[
+ \frac{(Q_t)_U\cap S}{(Q_t^{0})_U\cap S}
+ \ \longrightarrow\
+ \frac{(P_t^{+})_U\cap T}{(P_t)_U\cap T}.
+\]
+Indeed, over \(F\) the kernel of \(Q_t\to D_A^a/P_t\) is \(Q_t^{0}\). Extending this split exact sequence to \(U_E\) shows that the preimage of \((P_t)_U\) inside \((Q_t)_U\) is precisely \((Q_t^{0})_U\). The dimensions of the two displayed quotients contradict \eqref{eq:gain}. This proves the claim. Both sides of this comparison are measured over \(U_E\), with no factors involving the two vertex indices.
+
+It remains to recover the coordinates discarded by \(\coef_B\). Choose representatives \(r\) for \(E\backslash B\). For \(x\in Q_t\) write
+\[
+        Yx=\sum_r z_r r,\qquad
+        z_r=\coef_B(Yx r^{-1})\in F^m .
+\]
+The vertex invariance in Lemma~\ref{lem:threshold} gives \(xr^{-1}\in Q_t\). Hence \(Xz_r=c(xr^{-1})\in P_t\) for \emph{every} \(r\). In particular \(XY\) sends \(Q_t U_G\) into \(P_t U_G\), where \(U_G=\U(G)\). Completing vertex bases to invertible vertex matrices shows that these two extended modules have dimensions \(\dim_{D_B}Q_t\) and \(\dim_{D_A}P_t\). Restricting \(XY\) to the first one gives
+\begin{equation}\label{eq:ceiling}
+          j(t):=\dim_{D_B}Q_t-\dim_{D_A}P_t
+                    \ \le\ \dim_G\ker(XY)=\delta.
+\end{equation}
+By \eqref{eq:trace} and \eqref{eq:defect}, \(\int_0^1 j(t)\,dt=\delta\). By the proof of Lemma~\ref{lem:threshold}, \(j\) is a step function with finitely many breakpoints. Since \(j\le\delta\) pointwise and \(\int_0^1 j\,dt=\delta\), the integer-valued function \(j\) equals \(\delta\) almost everywhere. In particular \(\delta\) is an integer. It is the pointwise bound \eqref{eq:ceiling} that turns the integral identity into an equality almost everywhere.
+
+Choose any \(t\) giving equality and put \(L=\coef_B(YQ_t)\subseteq F^m\). This is a right \(F\)-space. The claim gives \(XL\subseteq P_t\), and the recovered coefficients give \(YQ_t\subseteq LD_B\). Its two rational costs therefore add to at most
+\[
+             \dim_{D_A}P_t+b-\dim_{D_B}Q_t=b-\delta=\rk_G(XY).
+\]
+Every rational cost is an upper bound, so this \(L\) attains the minimum.
+\end{proof}
+
+\section{Group-ring matrices and the universal field}\label{sec:universal}
+To pass from products \(XY\) to arbitrary matrices we use an elementary stabilization. We give the details because we will use the same reduction with coefficients in the two vertex division rings.
+
+\begin{lemma}[Separating the vertices]\label{lem:linear}
+Over a ring generated by two subrings \(R_A,R_B\), a rectangular matrix \(M\) becomes, after adjoining an identity block and invertible row and column operations, a sum \(P+Q\) of vertex matrices. If \(P,Q\) have size \(a\)-by-\(b\), their sum is the product
+\[
+                   [\,P\ \ I_a\,]\binom{I_b}{Q}.
+\]
+All operations are defined over the original ring and persist under any unital homomorphism.
+\end{lemma}
+\begin{proof}
+Express entries as sums of words. If one term splits into two nonempty words, write \(M=M_0+UV\), putting the first word into the relevant row of a single column \(U\) and the second into the relevant column of a single row \(V\). The other entries of \(U,V\) are zero. The equality
+\[
+ \begin{pmatrix}I&-U\\0&1\end{pmatrix}
+ \begin{pmatrix}M_0&U\\-V&1\end{pmatrix}
+ \begin{pmatrix}I&0\\V&1\end{pmatrix}
+       =\begin{pmatrix}M_0+UV&0\\0&1\end{pmatrix}
+\]
+removes one multiplication of letters. For fixed word expressions, the sum of the positive excesses of length over one decreases by one. Iteration ends with sums of single-vertex entries. Multiplication verifies the last factorization.
+\end{proof}
+
+\begin{proof}[Proof of the integrality and division-ring assertions of Theorem~A]
+Apply Lemma~\ref{lem:linear} to \(K[A]\) and \(K[B]\). By Theorem~\ref{thm:rational} the stabilized matrix has integral rank, and each identity block of size one increases rank by one.
+
+Here is also a direct way to see the assertion about \(D_K(G)\). Every element of this division closure admits an expression \(uM^{-1}v\) with \(u,M,v\) over \(K[G]\) and \(M\) square and invertible over \(U_G\). Indeed these expressions contain \(K[G]\), are added using block-diagonal denominators, and are multiplied using
+\(\left(\begin{smallmatrix}M&-vu'\\0&M'\end{smallmatrix}\right)\)
+as denominator. If \(uM^{-1}v\) is invertible, its negative inverse is the bottom-right entry of the inverse of \(\left(\begin{smallmatrix}M&v\\u&0\end{smallmatrix}\right)\). This proves the required containment of the division closure in the class of expressions. Elimination over \(U_G\) gives
+\begin{equation}\label{eq:schur}
+ \rk_G(uM^{-1}v)=
+ \rk_G\begin{pmatrix}M&v\\u&0\end{pmatrix}-\operatorname{size}(M).
+\end{equation}
+This is an integer between zero and one. Hence every nonzero element of \(D_K(G)\) is a unit in \(U_G\), and its inverse belongs to \(D_K(G)\).
+\end{proof}
+
+For a square matrix \(M\) of size \(n\) over a ring, \emph{full} means that no factorization through fewer than \(n\) columns exists over that ring. Form the unital ring coproduct \(R=D_A*_{F}D_B\), using the given embeddings of the possibly noncentral division ring \(F\). By Cohn \cite[\S2]{Cohn}, \(R\) is a fir, and its universal field of fractions \(D_*\) is the universal localization of \(R\) inverting all full square matrices (Cohn quotes this from his book, pp.~283 and~285). The issue is to identify this abstract division ring with the one inside \(U_G\).
+
+\begin{proof}[Proof of the universal-field assertion of Theorem~A]
+There is a natural map \(R\to D_K(G)\) from the vertex inclusions. Indeed \(D_K(G)\cap\U(V)\) contains \(K[V]\) and is closed under inversion in \(\U(V)\), so \(D_K(V)\subseteq D_K(G)\) for \(V=A,B,E\), compatibly with the two embeddings of \(F\). Let \(\Delta\) be any division ring with a unital map \(R\to\Delta\). Its restrictions to the vertex division rings are embeddings. For a vertex product \(XY\) and any right \(F\)-subspace \(L\subseteq F^m\), choose an \(F\)-linear projection \(e\) onto \(L\) along an \(F\)-complement. In \(\Delta\) the splitting
+\[
+                      XY=(Xe)Y+X((1-e)Y)
+\]
+bounds the rank by the rational cost of \(L\) in \eqref{eq:rational}. This works because extension from one division ring to another preserves ordinary matrix rank. Minimize over \(L\), then use Lemma~\ref{lem:linear}. For every matrix \(M\) over \(R\) we obtain
+\[
+                       \rk_{\Delta} M\le \rk_{D_K(G)}M .
+\]
+Here the rank on the right agrees with affiliated rank by Gaussian elimination in \(D_K(G)\).
+
+Take \(\Delta=D_*\). A full square matrix over \(R\) is invertible in \(D_*\), so the inequality forces it to be invertible in \(D_K(G)\). The universal localization therefore gives a unital homomorphism \(D_*\to D_K(G)\), hence an embedding. Its image is a division ring containing \(K[G]\). It is closed under taking affiliated inverses of its elements, so it contains the division closure \(D_K(G)\). This proves the asserted identification and, in particular, injectivity of \(R\to U_G\).
+\end{proof}
+
+\begin{corollary}\label{cor:tor}
+With \(R=D_A*_{F}D_B\) as above,
+\(\Tor_1^R(U_G,U_G)=0\).
+For \(K\) closed under complex conjugation, \(R\) is the ring \(\mathcal R_{K[A]}*_{\mathcal R_{K[E]}}\mathcal R_{K[B]}\) of S\'anchez-Peralta's Conjecture~7.1 \cite[Section~7]{Sanchez} (numbering of arXiv:2409.12268v2), and the corollary gives that conjecture's conclusion for the amalgams of Theorem~A, without its hypothesis that \(\mathcal R_{K[E]}\) is a universal localization of \(K[E]\). S\'anchez-Peralta identifies this vanishing as the only missing ingredient for extending his permanence theorem to infinite edge groups \cite[Section~7]{Sanchez}.
+\end{corollary}
+\begin{proof}
+A universal localization \(R\to D\) satisfies \(\Tor_1^R(D,D)=0\) \cite[Lemma~8.6(ii)]{NR}. Apply this with \(D=D_K(G)\). As a right, respectively left, \(D\)-space, \(U_G\) is free. Additivity of \(\Tor\) over direct sums in each variable gives the assertion. For a conjugation-invariant \(K\), each of our division closures is stable under adjoint and hence \(*\)-regular. Conversely, if \(x\) in a regular subring is an affiliated unit, a relative inverse \(y\) with \(xyx=x\) must equal \(x^{-1}\). These observations identify the division closures with the corresponding \(*\)-regular closures. Thus our \(R\) is exactly the ring appearing in that conjecture.
+\end{proof}
+
+\section{Simple lattices and arithmetic groups}\label{sec:applications}
+\subsection{Lattices in products of trees}
+Free groups have division closures over \(\C\) that are division rings, by Linnell \cite[Theorem~1.3]{Linnell}. Theorem~A therefore applies whenever a countable group, for instance a finitely generated one, splits as an amalgam of two free groups along a subgroup of finite index in both.
+
+\begin{corollary}\label{cor:simple}
+The simple groups \(\pi_1(Y)\) of Burger and Mozes \cite[Corollary~5.4 and Theorem~5.5]{BM}, which include the simple groups constructed in \cite[Chapter~6]{BM}, satisfy the strong Atiyah conjecture over \(\C\). So does the finitely presented torsion-free simple group \(\Sigma_0\) of Rattaggi \cite[Theorem~3.5]{Rattaggi}.
+\end{corollary}
+\begin{proof}
+Part (5) of \cite[Theorem~5.5]{BM} gives a splitting as an amalgam of finitely generated free groups. Its proof shows that the group acts on each tree factor with an edge as fundamental domain. Since the trees are locally finite, the edge group has finite index in both vertex groups. In the remark following Theorem~3.5 of \cite{Rattaggi}, Rattaggi gives two decompositions of \(\Sigma_0\),
+\[
+                  F_7*_{F_{73}} F_7,\qquad F_{11}*_{F_{81}} F_{11},
+\]
+where \(F_r\) denotes a free group of rank \(r\). Here \(\Sigma_0\) is the index-\(4\) parity subgroup of Rattaggi's \((12,8)\)-group. By \cite[Proposition~1.4 and its proof]{RattaggiThesis}, the edge group has index \(2m=12\) in both vertex groups of the first decomposition and \(2n=8\) in both vertex groups of the second. This agrees with the index formula for free groups: \(73=1+12\cdot6\) and \(81=1+8\cdot10\). Apply Theorem~A.
+\end{proof}
+
+For any group covered by Theorem~A over \(\C\), each nonzero \(x\in\C[G]\) acts injectively on \(\ell^2(G)\) because its affiliated inverse lies in \(D_\C(G)\). For the groups of Corollary~\ref{cor:simple}, the absence of zero-divisors and of nontrivial idempotents in \(K[G]\) for subfields \(K\subseteq\C\) already follows from the abstract embedding of Fisher and S\'anchez-Peralta \cite[Corollary~3.12]{FSP}, since the vertex groups are free; Theorem~A adds that this field can be taken to be the division closure inside \(\U(G)\). These two algebraic conclusions extend to every characteristic-zero coefficient field. The coefficients of a putative zero-divisor identity generate a finitely generated subfield that embeds in \(\C\), and an idempotent \(e\) satisfies \(e(1-e)=0\). The affiliated conclusion also determines ranks of arbitrary finite matrices in the regular representation.
+
+\subsection{Rings of \(S\)-integers}
+Let \(k\) be \(\Q\) or an imaginary quadratic field. For a finite set \(S\) of finite places of \(k\), let \(\mathcal O_{k,S}\) be the elements integral outside \(S\).
+
+\begin{corollary}\label{cor:arith}
+Every torsion-free finite-index subgroup of \(\SL_2(\mathcal O_{k,S})\) satisfies the strong Atiyah conjecture over \(\C\), hence over each subfield of \(\C\).
+\end{corollary}
+For subgroups contained in a torsion-free group with a normal finite-index subgroup isomorphic to a \(p\)-adic congruence subgroup \(\{A\in\mathrm{GL}_d(\Z_p):A\equiv I\bmod p^u\}\) (for instance, subgroups of a principal congruence subgroup of level \(\mathfrak q^u\) at a prime \(\mathfrak q\notin S\) with \(k_{\mathfrak q}\cong\mathbb Q_p\), where \(u\ge1\) for odd \(p\) and \(u\ge2\) for \(p=2\)), the conclusion over \(\overline{\Q}\) is due to Farkas and Linnell \cite[Theorem~1.1]{FL}, and over \(\C\) it then follows from Jaikin-Zapirain's base change for sofic groups \cite[Theorem~1.1]{Jaikin}. Corollary~\ref{cor:arith} needs no such congruence condition; it covers, for instance, the level-\(35\) example of Section~7.3, whose closures at \(5\) and \(7\) contain elements of orders \(4\) and \(8\).
+\begin{proof}
+We keep track of vertex stabilizers without requiring a prime ideal to have a generator. For every finite \(v\notin S\) choose a compact open subgroup \(C_v\le\SL_2(k_v)\), taking \(C_v=\SL_2(\mathcal O_v)\) except at finitely many places. Put
+\[
+ \Lambda(S,C)=\{g\in\SL_2(k):g\in C_v\text{ for every finite }v\notin S\}.
+\]
+We prove the assertion for all torsion-free finite-index subgroups \(\Gamma\) of each \(\Lambda(S,C)\), by induction on \(|S|\).
+
+If \(S\) is empty, the entries of every such matrix lie in one fixed fractional ideal of \(\mathcal O_k\). Indeed the compact local groups give uniform bounds on the denominators at the finitely many exceptional places. This fractional ideal is discrete in \(\C\) for either choice of \(k\), so \(\Gamma\) is discrete in \(\SL_2(\C)\). Its projection to \(\mathrm{PSL}_2(\C)\) is discrete and injective, since \(\Gamma\) is torsion-free. Each point stabilizer on hyperbolic three-space is finite by discreteness and compactness of the ambient stabilizer. The action is free and properly discontinuous, since the ambient isometry group acts properly. The quotient is an orientable three-manifold with fundamental group \(\Gamma\). The complex strong Atiyah conjecture for torsion-free three-manifold groups \cite[Corollary~1.5(1) in arXiv v3]{KL} gives the base case. For \(k=\Q\) one may also argue directly: \(\Gamma\cap\SL_2(\Z)\) has finite index in \(\Gamma\) and is free, so the torsion-free group \(\Gamma\) is free by Stallings' theorem.
+
+Choose a finite place \(v\in S\). The group \(\Lambda(S,C)\) is dense in \(\SL_2(k_v)\). To see this, choose a nonzero integer \(m\) sufficiently divisible that the upper and lower elementary unipotent matrices with parameter in \(m\mathcal O_{k,S}\) satisfy all the \(C_u\)-conditions. The ring \(\mathcal O_k\) is dense in \(\mathcal O_v\). Some power of the prime ideal at \(v\) is principal, since the ideal class group is finite. If \(\pi\) generates that power, its inverse is in \(\mathcal O_{k,S}\), so \(\mathcal O_{k,S}\) is dense in \(k_v\). The parameters \(m\mathcal O_{k,S}\) are dense as well. The closure contains both elementary root groups, which generate \(\SL_2(k_v)\).
+
+The finite-index subgroup \(\Gamma\) is still dense. Its normal core in \(\Lambda(S,C)\) has closure a normal subgroup of finite index in \(\SL_2(k_v)\), since finitely many translates cover the dense subgroup and their closures cover the whole group. In any finite quotient the elementary root groups have trivial image, because the additive group of the characteristic-zero field \(k_v\) is divisible. Thus the quotient is trivial.
+
+The action of \(\SL_2(k_v)\) on its Bruhat--Tits tree has a single edge as fundamental domain, with endpoints of distinct types, no inversions, and open compact endpoint stabilizers \cite[Chapter~II, \S1]{Serre}. In the lattice model the neighbors of a vertex are the lines of a two-dimensional vector space over the residue field. Density and openness imply that \(\Gamma\) has the same vertex and edge orbits. The two vertex stabilizers of \(\Gamma\) have finite index in the corresponding groups \(\Lambda(S\setminus\{v\},C')\) obtained by imposing at \(v\) the compact open stabilizer of the chosen vertex. Their common edge stabilizer has finite index in each (indeed the residue field size plus one). By Bass--Serre theory \(\Gamma\) is their one-edge amalgam. Both vertex groups satisfy the induction hypothesis. Theorem~A completes the induction.
+\end{proof}
+
+\subsection{A congruence example at level \(35\)}
+Fix a prime \(\ell\ne5,7\), put \(g=\left(\begin{smallmatrix}0&-1\\1&10\end{smallmatrix}\right)\), and let \(\Gamma\) be the inverse image of \(\langle\bar g\rangle\) under reduction of \(\SL_2(\Z[1/\ell])\) modulo \(35\). Since the finite quotient \(\langle\bar g\rangle\) has even order, torsion of order \(2\) or \(4\) is not excluded by the order of the quotient alone, so we verify torsion-freeness directly. Write \(g_q\) for reduction modulo \(q\). Cayley--Hamilton gives \(g_5^2=-I\) and \(g_7^2=3g_7-I\). Squaring the latter yields \(g_7^4=21g_7-8I=-I\) in characteristic \(7\). Thus \(g_5\) and \(g_7\) have orders \(4\) and \(8\). The two components of every nontrivial power of \(\bar g\) have different orders.
+
+A finite-order element of \(\SL_2(\Q)\) has integral trace in \([-2,2]\), by its roots of unity eigenvalues. If it is the identity modulo \(5\) or \(7\), its trace must equal \(2\), so semisimplicity in characteristic zero makes it the identity. Each reduction therefore preserves the order of every torsion element of \(\Gamma\). The order mismatch just computed excludes all nontrivial torsion. Corollary~\ref{cor:arith} applies.
+
+For an explicit consequence, let \(H\) be the inverse image of \(\langle\bar g^2\rangle\) in \(\Gamma\). For every \(K\subseteq\C\) the twisted norm equation
+\[
+                    y\,\operatorname{Ad}(g)(y)\,g^2=1
+\]
+has no solution in \(D_K(H)\). Indeed \(u=yg\) would satisfy \(u^2=1\) in \(D_K(\Gamma)\), whence \(u=1\) or \(u=-1\). Both are excluded by \(u\in D_K(H)g\) and the direct coset decomposition of Lemma~\ref{lem:cosets}. This is one instance where working inside the affiliated division ring distinguishes an element from all scalars.
+
+\section{Changing coefficients and detecting eigenvalues}\label{sec:coeff}
+Complex rank integrality bounds the number and multiplicities of point eigenvalues. To control the values themselves we need information about changing the coefficients. Let a field automorphism \(\sigma\) of \(\C\) act on a group algebra by changing scalar coefficients and fixing group elements. Such a \(\sigma\) need not commute with complex conjugation. The universal field in Theorem~A allows us to work entirely with division rings.
+
+\begin{proposition}\label{prop:change}
+Suppose the hypotheses of Theorem~A hold over \(\C\). Fix \(\sigma\in\Aut(\C)\). If applying \(\sigma\) to matrix coefficients preserves the von Neumann ranks of all group-ring matrices at both vertices, then \(\sigma\) extends uniquely to a ring automorphism of \(D_\C(G)\) fixing \(G\). In particular it preserves matrix ranks there.
+\end{proposition}
+\begin{proof}
+At a vertex \(V\), its given group-ring automorphism extends to \(D_\C(V)\). Here are details of the descent to rational expressions. Write an element as \(uM^{-1}v\) as in the proof of Theorem~A. The twisted denominator is invertible because full affiliated rank is invariant. For two representations, form their difference using a block-diagonal denominator and test zero by \eqref{eq:schur}. Both ranks in that formula are invariant, so equivalent representations remain equivalent. The formulas for addition, multiplication and inversion show that the resulting map is a homomorphism. The inverse comes from \(\sigma^{-1}\), and uniqueness follows by division generation. Gaussian elimination identifies the matrix ranks with ordinary ranks over the division ring.
+
+Both vertex automorphisms restrict to coefficient change on \(\C[E]\). This subring division-generates \(D_\C(E)\) inside each vertex division ring, by the subgroup argument in Lemma~\ref{lem:cosets}. Therefore the restrictions preserve and agree on the whole edge division ring. They induce an automorphism of the ring coproduct. An automorphism carries full square matrices to full square matrices, so it acts on its universal localization \(D_\C(G)\). It fixes the images of \(A,B\) and hence of \(G\).
+\end{proof}
+
+\begin{corollary}\label{cor:eigen}
+Under the hypotheses of Theorem~A over \(\C\), assume both vertex ranks are invariant under all coefficient automorphisms of \(\C\). Let \(K\subseteq\C\) and \(T\in M_n(D_K(G))\). If \(\lambda\in\C\) and \(T-\lambda I\) is singular over \(\U(G)\), then \(\lambda\) is algebraic over \(K\). For \(T\in M_n(K[G])\), singularity here means precisely that \(\lambda\) is a point eigenvalue on \(\ell^2(G)^n\). Also \(D_K(G)\cap\C=K\).
+\end{corollary}
+\begin{proof}
+Write \(D=D_\C(G)\). Elimination over \(D\) shows that singularity over \(\U(G)\) is equivalent to having a nonzero right \(D\)-kernel. The scalars \(\C\) are central in \(D\). Distinct central eigenvalues have independent eigenspaces over \(D\). In a relation among eigenvectors for distinct \(\lambda_i\), applying \(\prod_{j\ne i}(T-\lambda_j I)\) isolates its \(i\)-th term. Thus there are at most \(n\) distinct central eigenvalues.
+
+Each \(\sigma\in\Aut(\C/K)\) fixes \(D_K(G)\) pointwise by Proposition~\ref{prop:change} and division generation. It therefore sends a \(\lambda\)-eigenvector to a \(\sigma(\lambda)\)-eigenvector of the same \(T\). If \(\lambda\) were transcendental, extend \(\{\lambda\}\) to a transcendence basis over \(K\), translate \(\lambda\) by integers while fixing the other basis elements, and extend the resulting rational-function automorphisms to the algebraic closure \(\C\). This produces infinitely many eigenvalues. For the intersection assertion, the fixed field of \(\Aut(\C/K)\) is \(K\). The preceding construction moves transcendental elements. In characteristic zero an algebraic element outside \(K\) can be moved to a distinct conjugate by extending the embedding to \(\C\). The inclusion in the other direction is immediate.
+\end{proof}
+
+For the free vertex groups in Corollary~\ref{cor:simple} the extra hypothesis is known. Free groups are residually finite and hence sofic, and Jaikin-Zapirain's independence theorem \cite[Corollary~1.7]{Jaikin} applies to every coefficient-field embedding for a countable sofic group. We apply it to the two vertices. In particular the simple groups in Corollary~\ref{cor:simple} have the algebraic eigenvalue property of Dodziuk, Linnell, Mathai, Schick and Yates \cite[Definition~4.3]{DLM}. Their Theorem~4.11 establishes this property from complex rank integrality for a group admitting a two-sided invariant order. The transfer above uses the vertex coefficient symmetries. For sofic groups the strong eigenvalue property over conjugation-invariant coefficient fields is already known \cite[Corollary~1.5]{Jaikin}.
+
+The level-\(35\) example gives a scalar illustration. Its vertex groups for the \(\ell\)-adic splitting are torsion-free subgroups of conjugates of \(\SL_2(\Z)\), hence free. With \(K=\Q(i)\), an element \(z\in D_K(\Gamma)\) satisfying \(z^2=i\) would satisfy
+\((z-\zeta_8)(z+\zeta_8)=0\) in \(D_\C(\Gamma)\), where \(\zeta_8=\exp(\pi i/4)\). Thus \(z=\pm\zeta_8\), contrary to \(D_K(\Gamma)\cap\C=K\). In this arithmetic example the scalar intersection is also covered by Jaikin-Zapirain's result for sofic groups \cite[Corollary~1.6]{Jaikin}, since reduction modulo primes away from the denominators separates elements.
+
+\begin{thebibliography}{99}
+\raggedright
+\bibitem{BBL} S.~T. Belinschi, H. Bercovici and W. Liu,
+\emph{The atoms of operator-valued free convolutions},
+J. Operator Theory \textbf{85} (2021), 303--320.
+\href{https://doi.org/10.7900/jot.2019dec07.2283}{doi:10.7900/jot.2019dec07.2283}.
+The theorem numbering used here is that of \href{https://arxiv.org/abs/1903.09002v2}{arXiv:1903.09002v2}.
+\bibitem{Berberian} S.~K. Berberian,
+\emph{The maximal ring of quotients of a finite von Neumann algebra},
+Rocky Mountain J. Math. \textbf{12} (1982), 149--164.
+\bibitem{BM} M. Burger and S. Mozes, \emph{Lattices in product of trees},
+Publ. Math. Inst. Hautes \'Etudes Sci. \textbf{92} (2000), 151--194.
+\href{https://doi.org/10.1007/BF02698916}{doi:10.1007/BF02698916}.
+\bibitem{Cohn} P.~M. Cohn, \emph{The free product of skew fields},
+J. Austral. Math. Soc. \textbf{16} (1973), 300--308.
+\href{https://doi.org/10.1017/S1446788700015081}{doi:10.1017/S1446788700015081}.
+\bibitem{DLM} J. Dodziuk, P. Linnell, V. Mathai, T. Schick and S. Yates,
+\emph{Approximating \(L^2\)-invariants and the Atiyah conjecture},
+Comm. Pure Appl. Math. \textbf{56} (2003), 839--873.
+\href{https://arxiv.org/abs/math/0107049}{arXiv:math/0107049}.
+\bibitem{FL} D.~R. Farkas and P.~A. Linnell, \emph{Congruence subgroups and the Atiyah conjecture},
+in: Groups, rings and algebras, Contemp. Math. \textbf{420}, Amer. Math. Soc., Providence, RI, 2006, 89--102.
+\href{https://arxiv.org/abs/math/0511747}{arXiv:math/0511747}.
+\bibitem{FSP} S.~P. Fisher and P. S\'anchez-Peralta,
+\emph{Division rings for group algebras of virtually compact special groups and \(3\)-manifold groups},
+J. Comb. Algebra \textbf{10} (2026), 153--193.
+\href{https://doi.org/10.4171/JCA/89}{doi:10.4171/JCA/89}.
+\bibitem{Jaikin} A. Jaikin-Zapirain,
+\emph{The base change in the Atiyah and the L\"uck approximation conjectures},
+Geom. Funct. Anal. \textbf{29} (2019), 464--538.
+Theorem and corollary numbers are those of the author's preprint version.
+\bibitem{KL} D. Kielak and M. Linton, \emph{Group rings of three-manifold groups},
+Proc. Amer. Math. Soc. \textbf{152} (2024), 1939--1946.
+\href{https://doi.org/10.1090/proc/16716}{doi:10.1090/proc/16716}.
+See also \href{https://arxiv.org/abs/2303.15907v3}{arXiv:2303.15907v3}, Corollary~1.5(1).
+\bibitem{Linnell} P.~A. Linnell, \emph{Division rings and group von Neumann algebras},
+Forum Math. \textbf{5} (1993), 561--576.
+\href{https://doi.org/10.1515/form.1993.5.561}{doi:10.1515/form.1993.5.561}.
+\bibitem{Luck} W. L\"uck, \emph{\(L^2\)-invariants: theory and applications to geometry and \(K\)-theory},
+Ergebnisse der Mathematik, 3rd series, vol.~44, Springer, Berlin, 2002.
+\bibitem{NR} A. Neeman and A. Ranicki, \emph{Noncommutative localisation in algebraic \(K\)-theory I},
+Geom. Topol. \textbf{8} (2004), 1385--1425.
+\href{https://doi.org/10.2140/gt.2004.8.1385}{doi:10.2140/gt.2004.8.1385}.
+\bibitem{RattaggiThesis} D. Rattaggi,
+\emph{Computations in groups acting on a product of trees: normal subgroup structures and quaternion lattices},
+doctoral thesis no.~15538, ETH Z\"urich, 2004.
+\href{https://doi.org/10.3929/ethz-a-004794219}{doi:10.3929/ethz-a-004794219}.
+\bibitem{Rattaggi} D. Rattaggi, \emph{A finitely presented torsion-free simple group},
+J. Group Theory \textbf{10} (2007), 363--371.
+\href{https://arxiv.org/abs/math/0411546}{arXiv:math/0411546}. The theorem numbering used here is that of arXiv:math/0411546v1.
+\bibitem{Reich} H. Reich,
+\emph{On the \(K\)- and \(L\)-theory of the algebra of operators affiliated to a finite von Neumann algebra},
+\(K\)-Theory \textbf{24} (2001), 303--326.
+\bibitem{Sanchez} P. S\'anchez-Peralta, \emph{Universal localizations, Atiyah conjectures and graphs of groups},
+Geom. Funct. Anal. \textbf{35} (2025), 842--876.
+\href{https://doi.org/10.1007/s00039-025-00710-4}{doi:10.1007/s00039-025-00710-4}.
+\bibitem{Schick} T. Schick, \emph{Integrality of \(L^2\)-Betti numbers},
+Math. Ann. \textbf{317} (2000), 727--750.
+We refer to the corrected version \href{https://arxiv.org/abs/math/0001101}{arXiv:math/0001101}.
+\bibitem{Serre} J.-P. Serre, \emph{Trees}, translated by J. Stillwell,
+Springer, Berlin, 1980, corrected second printing, 2003.
+\end{thebibliography}
+\end{document}
+
