@@ -1,6 +1,6 @@
 # The strong Atiyah conjecture for finite-index amalgams
 
-Nidhal Mghirbi and Seth Douglas. Preprint, version 1.0.0, November 2026.
+Nidhal Mghirbi and Seth Douglas. Preprint, version 1.0.0, November 2026. [Archive DOI](https://doi.org/10.5281/zenodo.24356021) (all versions); version 1.0.0: [10.5281/zenodo.24356022](https://doi.org/10.5281/zenodo.24356022)
 
 ## Abstract
 
@@ -31,6 +31,6 @@ From `paper/`, run pdfLaTeX three times without shell escape. From the archive r
 
 ## Citation and license
 
-Mghirbi, Nidhal, and Seth Douglas (2026). *The strong Atiyah conjecture for finite-index amalgams*. Version 1.0.0. [Citation metadata](CITATION.cff)
+Mghirbi, Nidhal, and Seth Douglas (2026). *The strong Atiyah conjecture for finite-index amalgams*. Version 1.0.0. [Archive DOI](https://doi.org/10.5281/zenodo.24356021) · [Citation metadata](CITATION.cff)
 
 Paper and documentation are licensed under CC BY 4.0; the verification script under MIT or Apache 2.0, at your option. [Licensing details](RIGHTS.md)
