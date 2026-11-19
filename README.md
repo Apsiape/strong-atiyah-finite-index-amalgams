@@ -1,6 +1,6 @@
 # The strong Atiyah conjecture and von Neumann ranks for graphs of groups with finite-index edge inclusions
 
-Nidhal Mghirbi and Seth Douglas. Preprint, version 2.0.0, November 2026. [Archive DOI](https://doi.org/10.5281/zenodo.24356021) (all versions); version 1.0.0: [10.5281/zenodo.24356022](https://doi.org/10.5281/zenodo.24356022)
+Nidhal Mghirbi and Seth Douglas. Preprint, version 2.0.0, November 2026. [Archive DOI](https://doi.org/10.5281/zenodo.24356021) (all versions); version 2.0.0: [10.5281/zenodo.24381994](https://doi.org/10.5281/zenodo.24381994); version 1.0.0: [10.5281/zenodo.24356022](https://doi.org/10.5281/zenodo.24356022)
 
 ## Abstract
 
