@@ -1,4 +1,0 @@
-Rational cut: the non-coordinate minimizing line has cost zero.
-Dihedral quotients: exact regular-representation ranks for orders 4 to 40.
-Threshold model: greatest maximizers and exact integrals for all 125 triples.
-Arithmetic: reduction orders 4 and 8, seven nontrivial powers, both Schreier indices.

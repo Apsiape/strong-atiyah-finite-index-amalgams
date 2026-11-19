@@ -1,12 +1,12 @@
 cff-version: 1.2.0
 message: |-
-  Preprint. Version 1.0.0. Text: CC BY 4.0.
+  Preprint. Version 2.0.0. Text: CC BY 4.0.
 type: software
-title: "The strong Atiyah conjecture for finite-index amalgams"
-version: 1.0.0
+title: "The strong Atiyah conjecture and von Neumann ranks for graphs of groups with finite-index edge inclusions"
+version: 2.0.0
 doi: "10.5281/zenodo.24356021"
-date-released: '2026-11-18'
+date-released: '2026-11-19'
 license: [CC-BY-4.0, MIT, Apache-2.0]
 authors: [{"family-names": "Mghirbi", "given-names": "Nidhal", "orcid": "https://orcid.org/0009-0005-6534-1118"}, {"family-names": "Douglas", "given-names": "Seth", "orcid": "https://orcid.org/0009-0007-4708-3252"}]
-keywords: ["strong Atiyah conjecture", "amalgamated free product", "von Neumann rank", "division ring", "universal field of fractions", "lattices in products of trees", "S-arithmetic groups"]
-abstract: "Let G = A *_E B, where E has finite index in both vertex groups. We prove that the torsion-free strong Atiyah conjecture over a subfield of ℂ passes from A and B to G. The division closure of the group algebra is the universal field of fractions of the coproduct of the vertex division rings over the edge division ring. The proof starts with an analytic formula for the rank of a product of vertex matrices, valid for arbitrary group amalgams. At finite index we show that a subspace over the edge division ring attains the minimum in that formula. Applications include torsion-free finite-index subgroups of SL₂ over rings of S-integers in ℚ and in imaginary quadratic fields, and the simple lattices in products of trees constructed by Burger and Mozes. For these lattices, the point eigenvalues of matrices over Q̄[G] in the regular representation are algebraic."
+keywords: ["strong Atiyah conjecture", "von Neumann rank", "graphs of groups", "finite-index edge inclusions", "bounded torsion", "universal field of fractions", "lattices in products of trees", "GL2(Q)"]
+abstract: "Let G be the fundamental group of a graph of groups in which each edge group has finite index in both incident vertex groups. If the von Neumann matrix ranks at each vertex generate a discrete subgroup of the real numbers, we prove that the rank group of G is exactly the sum of the vertex rank groups. This gives permanence for the strong Atiyah conjecture with bounded torsion. The proof expresses a rank as a minimum over edge projections and shows that modules over the edge regular closures attain it simultaneously. In the torsion-free case with integral vertex ranks, the affiliated division ring is the universal field of the graph of vertex division rings. For finite graphs of finitely generated free groups, rational matrix ranks are computable. Applications include finitely presented infinite simple groups acting on products of trees and the exact conjectured denominator for every subgroup of GL₂(ℚ). In SL₂(ℤ[1/2]) an integral group-ring element has kernel dimension 1/12, although every torsion-free subgroup of finite index has index divisible by 24."
